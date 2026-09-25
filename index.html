@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PackWise — AI Food Packaging Recommendation System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="nav wrap">
+    <div class="brand"><span class="mark"></span>PackWise</div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#tool">Recommender</a>
+      <a href="#how">How it works</a>
+      <a href="#materials">Materials</a>
+    </nav>
+    <div class="nav-right">
+      <button id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+      <a class="btn btn-primary" href="#tool">Try it now</a>
+      <button id="navToggle" class="nav-burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <span class="float-shape" style="width:280px;height:280px;top:-80px;left:-100px;"></span>
+  <span class="float-shape s2" style="width:200px;height:200px;top:20px;right:-60px;"></span>
+  <span class="float-shape s3" style="width:150px;height:150px;bottom:-40px;left:42%;"></span>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="badge">Built for Smart India Hackathon</span>
+      <h1>Give every food commodity the packaging it actually needs</h1>
+      <p class="lead">Roughly a third of food produced for people is lost or wasted, and mismatched packaging is a quiet contributor. PackWise scores real packaging materials against a commodity's handling conditions and recommends the best fit — with the reasoning shown, not hidden.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="#tool">Try the recommender</a>
+        <a class="btn btn-ghost btn-lg" href="#how">See how it works</a>
+      </div>
+      <div class="stat-strip">
+        <div class="stat"><b>13</b><span>material profiles</span></div>
+        <div class="stat"><b>7</b><span>handling parameters</span></div>
+        <div class="stat"><b>&lt;1s</b><span>to a ranked result</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-top">
+          <span class="dot-group"><span></span><span></span><span></span></span>
+          <span class="hero-card-title">Sample analysis</span>
+        </div>
+        <div class="row"><span>Commodity</span><b>Paneer, chilled dairy</b></div>
+        <div class="row"><span>Oxygen sensitivity</span><b>High</b></div>
+        <div class="row"><span>Target shelf life</span><b>10 days</b></div>
+        <div class="row highlight"><span>Recommended</span><b>EVOH multilayer + MAP</b></div>
+        <div class="row"><span>Match score</span><b class="data">91 / 100</b></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="tool">
+  <div class="wrap">
+    <span class="eyebrow">Recommender</span>
+    <h2>Get a packaging recommendation</h2>
+    <p class="sub">Describe the commodity and how it needs to be handled. The engine weighs each factor against a library of packaging materials and ranks the closest matches.</p>
+    <div class="tool">
+      <form id="form">
+        <div class="field">
+          <label for="category">Food category</label>
+          <select id="category">
+            <option value="dairy">Dairy (milk, paneer, curd)</option>
+            <option value="meat">Meat, poultry, seafood</option>
+            <option value="produce">Fresh fruits &amp; vegetables</option>
+            <option value="bakery">Bakery &amp; confectionery</option>
+            <option value="dry">Dry goods (grains, snacks, spices)</option>
+            <option value="beverage">Beverages</option>
+            <option value="frozen">Ready-to-eat / frozen meals</option>
+          </select>
+        </div>
+        <div class="two-col">
+          <div class="field">
+            <label for="moisture">Moisture sensitivity</label>
+            <select id="moisture"><option value="0.3">Low</option><option value="0.6" selected>Medium</option><option value="1">High</option></select>
+          </div>
+          <div class="field">
+            <label for="oxygen">Oxygen sensitivity</label>
+            <select id="oxygen"><option value="0.3">Low</option><option value="0.6" selected>Medium</option><option value="1">High</option></select>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="field">
+            <label for="light">Light sensitivity</label>
+            <select id="light"><option value="0.2" selected>Low</option><option value="0.6">Medium</option><option value="1">High</option></select>
+          </div>
+          <div class="field">
+            <label for="temp">Storage condition</label>
+            <select id="temp"><option value="frozen">Frozen</option><option value="chilled">Chilled</option><option value="ambient" selected>Ambient</option></select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="shelf">Target shelf life: <span id="shelfOut" class="data">14 days</span></label>
+          <input type="range" id="shelf" min="1" max="90" value="14">
+        </div>
+        <div class="field">
+          <label for="eco">Priority: cost vs. sustainability — <span id="ecoOut" class="data">Balanced</span></label>
+          <input type="range" id="eco" min="0" max="100" value="50">
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">Analyze &amp; recommend</button>
+      </form>
+      <div class="results" id="results">
+        <div class="placeholder">
+          <div class="placeholder-icon">◎</div>
+          Fill in the commodity's handling conditions and run the analysis — your top 3 packaging matches will appear here with a scored breakdown.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <span class="eyebrow">Method</span>
+    <h2>How the scoring engine works</h2>
+    <p class="sub">A transparent, rule-weighted model rather than a black box — every score traces back to a stated reason, which matters for a food-safety-adjacent recommendation.</p>
+    <div class="how">
+      <div><span class="step-no">1</span><h4>Profile the commodity</h4><p>Moisture, oxygen and light sensitivity, storage temperature and target shelf life are converted into weighted requirement scores.</p></div>
+      <div><span class="step-no">2</span><h4>Score the material library</h4><p>Each of the 13 packaging profiles is rated on barrier performance, temperature range, cost and sustainability; requirements are matched against these ratings.</p></div>
+      <div><span class="step-no">3</span><h4>Rank and explain</h4><p>Materials are ranked by weighted fit, and the top matches are returned with the specific factors that drove the score.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="materials">
+  <div class="wrap">
+    <span class="eyebrow">Reference</span>
+    <h2>Material library</h2>
+    <p class="sub">The reference set the engine draws from — filter by strength to browse.</p>
+    <div class="filters">
+      <button class="chip active" data-filter="all">All materials</button>
+      <button class="chip" data-filter="high-barrier">High-barrier</button>
+      <button class="chip" data-filter="eco">Eco-friendly</button>
+      <button class="chip" data-filter="low-cost">Low-cost</button>
+    </div>
+    <div class="lib-grid" id="libGrid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div class="brand"><span class="mark"></span>PackWise</div>
+    <p>AI-based intelligent food packaging material recommendation system, built for Smart India Hackathon.</p>
+    <div class="prob data">Problem statement track: Food Processing / Packaging</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
